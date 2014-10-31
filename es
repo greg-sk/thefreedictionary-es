@@ -37,4 +37,10 @@ rm -f $HOME/.es/xx*
 rm -f $HOME/.es/yy*
 rm -f $HOME/.es/zz*
 
+
+nlines=`wc -l $final | awk '{print $1}'`
+if [ "$nlines" -lt 6 ]; then
+  ese >> $final
+fi
+
 cat $final
