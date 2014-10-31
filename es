@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-  echo "es - Spanish-Spanis dictionary from thefreedictionary.com"
+  echo "es - Spanish-Spanish dictionary from thefreedictionary.com"
   echo "Usage:"
   echo "    es <word>"
   exit 1
