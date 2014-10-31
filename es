@@ -4,10 +4,20 @@ usage() {
   echo "es - Spanish-Spanish dictionary from thefreedictionary.com"
   echo "Usage:"
   echo "    es <word>"
-  exit 1
+  exit 0
 }
 
-[ $# -eq 1 ] || usage
+if [ $# -eq 1 ] && [ "$1" = "-h" ]; then
+  usage
+fi
+
+if [ $# -eq 0 ]; then
+  # Show translations to other languages of the last word queried with 'es'
+  last=`ls -tR $HOME/.es/*.htm | head -n 1`
+  if [ -n "$last" ]; then
+    w3m -dump -cols 180 $last | grep -A 1000 'Traducciones' | head -n -3
+  fi
+fi
 
 mkdir -p "$HOME/.es"
 cd "$HOME/.es"
