@@ -1,4 +1,4 @@
-### es - Spanish-Spanis dictionary from thefreedictionary.com
+### es - Spanish-Spanish dictionary from thefreedictionary.com
 
 Usage:
 
