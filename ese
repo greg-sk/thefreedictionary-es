@@ -4,5 +4,5 @@
 
 last=`ls -tR $HOME/.es/*.htm | head -n 1`
 if [ -n "$last" ]; then
-  w3m -dump -cols 180 $last | grep -A 1000 'Traducciones' | tail -n +15 | head -n -3
+  w3m -dump -cols 180 $last | grep -A 1000 'Traducciones' | head -n -3
 fi
