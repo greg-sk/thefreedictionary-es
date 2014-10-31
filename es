@@ -24,9 +24,9 @@ curl -s http://es.thefreedictionary.com/p/$word > ${word}.htm
 grep "Palabra no encontrada" ${word}.htm > /dev/null && { rm $HOME/.es/${word}.htm; echo "Not found" > $final; cat $final; exit 0; }
 
 w3m -dump -cols 180 ${word}.htm > ${word}.txt
-csplit -f xx ${word}.txt '/Sin.nimos/' > /dev/null 2>&1
+csplit -f xx ${word}.txt '/Sin.nimos/' > /dev/null 2>&1 || cp ${word}.txt xx00
 csplit -f yy xx00 '/Gerund:/' > /dev/null 2>&1 || cp xx00 yy00
-csplit -f zz xx01 '/Traducciones/' > /dev/null 2>&1
+csplit -f zz xx01 '/Traducciones/' > /dev/null 2>&1 || touch zz00
 
 tail -n +3 yy00 | head -n -2  > $final
 echo >> $final
