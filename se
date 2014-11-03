@@ -1,0 +1,19 @@
+#!/bin/sh
+
+usage() {
+  echo "se - English to Spanish translation of single word"
+  echo "Usage:"
+  echo "    se <word>"
+  exit 1
+}
+
+[ $# -eq 1 ] || usage
+
+mkdir -p ~/.es/.se1
+word=$1
+
+curl -s http://www.spanishdict.com/translate/$word > ~/.es/.se1/${word}.htm
+
+w3m -dump -cols 180 ~/.es/.se1/${word}.htm > ~/.es/.se1/$word
+
+grep -A 10000 "^Translate$" ~/.es/.se1/$word | grep -B 10000 "^Search history$" | sed '/^Dictionary$/d' | sed '/^Translate$/d' | sed '/^Search history$/d' | sed '/^View complete/d' | sed '/in our machine translators/d' | sed '/Harrap/d' | sed '/Harper/d' | sed '/^(.*)$/d' | sed '/^\[.*\]$/d' | sed '/^Conjugation$/d' | sed '/Spanish to English/d' | sed '/English to Spanish/d' | sed '/^Video$/d'

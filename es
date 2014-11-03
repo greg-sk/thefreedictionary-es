@@ -29,7 +29,7 @@ if [ -e $final ]; then
   exit 0
 fi
 
-curl -s http://es.thefreedictionary.com/p/$word > ${word}.htm
+curl -L -s http://es.thefreedictionary.com/p/$word > ${word}.htm
 
 grep "Palabra no encontrada" ${word}.htm > /dev/null && { rm $HOME/.es/${word}.htm; echo "Not found" > $final; cat $final; exit 0; }
 
